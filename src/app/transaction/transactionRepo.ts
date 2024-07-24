@@ -292,10 +292,10 @@ export const updatePaymentTransaction = async (
 
 export const getTodayTransaction = async ({ page, perPage }: IFilterTransaction) => {
   const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0);
+  startOfDay.setHours(0, 0, 0, 0);
 
   const endOfDay = new Date();
-  endOfDay.setHours(23, 59, 59)
+  endOfDay.setHours(23, 59, 59, 999)
 
   return await prisma.transaction.findMany({
     where: {
@@ -313,10 +313,10 @@ export const getTodayTransaction = async ({ page, perPage }: IFilterTransaction)
 }
 export const getTodayTransactionCount = async () => {
   const startOfDay = new Date();
-  startOfDay.setHours(0, 0, 0);
+  startOfDay.setHours(0, 0, 0, 0);
 
   const endOfDay = new Date();
-  endOfDay.setHours(23, 59, 59)
+  endOfDay.setHours(23, 59, 59, 999)
 
   return await prisma.transaction.count({
     where: {
