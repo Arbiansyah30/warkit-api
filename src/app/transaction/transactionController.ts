@@ -399,16 +399,16 @@ export const getTodayTransactionController = async (req: Request, res: Response)
     perPage: Number(perPage) || undefined,
   });
 
-  return HandleResponse(res, 200, MESSAGE_CODE.SUCCESS, MESSAGES.SUCCESS.TRANSACTION.GET, todayTransaction);
+  return HandleResponse(res, 200, MESSAGE_CODE.SUCCESS, MESSAGES.SUCCESS.TRANSACTION.GET, todayTransaction.data, todayTransaction.meta);
 }
 export const getWeekTransactionController = async (req: Request, res: Response) => {
   const { page, perPage } = req.query
-  const todayTransaction = await getWeekTransactionService({
+  const weekTrasaction = await getWeekTransactionService({
     page: Number(page) || undefined,
     perPage: Number(perPage) || undefined,
   });
 
-  return HandleResponse(res, 200, MESSAGE_CODE.SUCCESS, MESSAGES.SUCCESS.TRANSACTION.GET, todayTransaction);
+  return HandleResponse(res, 200, MESSAGE_CODE.SUCCESS, MESSAGES.SUCCESS.TRANSACTION.GET, weekTrasaction.data, weekTrasaction.meta);
 }
 
 export const getMonthTransactionController = async (req: Request, res: Response) => {
