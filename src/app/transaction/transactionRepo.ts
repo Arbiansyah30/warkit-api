@@ -300,8 +300,8 @@ export const getTodayTransaction = async ({ page, perPage }: IFilterTransaction)
   return await prisma.transaction.findMany({
     where: {
       createdAt: {
-        gte: startOfDay,
-        lte: endOfDay,
+        gte: startOfDay.toISOString(),
+        lte: endOfDay.toISOString(),
       },
     },
     orderBy: {
@@ -321,8 +321,8 @@ export const getTodayTransactionCount = async () => {
   return await prisma.transaction.count({
     where: {
       createdAt: {
-        gte: startOfDay,
-        lte: endOfDay,
+        gte: startOfDay.toISOString(),
+        lte: endOfDay.toISOString(),
       },
     },
     orderBy: {
