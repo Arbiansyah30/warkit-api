@@ -301,7 +301,7 @@ export const getTodayTransaction = async ({ page, perPage }: IFilterTransaction)
     where: {
       createdAt: {
         gte: startOfDay,
-        lt: endOfDay,
+        lte: endOfDay,
       },
     },
     orderBy: {
@@ -322,7 +322,7 @@ export const getTodayTransactionCount = async () => {
     where: {
       createdAt: {
         gte: startOfDay,
-        lt: endOfDay,
+        lte: endOfDay,
       },
     },
     orderBy: {
@@ -346,7 +346,7 @@ export const getWeekTransaction = async ({ page, perPage }: IFilterTransaction) 
     where: {
       createdAt: {
         gte: startOfWeek,
-        lt: endOfWeek,
+        lte: endOfWeek,
       },
     },
     orderBy: {
@@ -371,7 +371,7 @@ export const getWeekTransactionCount = async () => {
     where: {
       createdAt: {
         gte: startOfWeek,
-        lt: endOfWeek,
+        lte: endOfWeek,
       },
     },
     orderBy: {
