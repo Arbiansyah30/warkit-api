@@ -415,3 +415,11 @@ export const cancelTransaction = async (id: string) => {
     }
   },)
 }
+
+export const deleteTransaction = async (id: string) => {
+  return await prisma.transaction.delete({
+    where: {
+      id
+    }
+  })
+}

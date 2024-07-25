@@ -2,6 +2,7 @@ import Midtrans from "midtrans-client";
 import { ENV } from "../../libs";
 import { getProductById } from "../product/productRepo";
 import { TransactionBodyDTO, TransactionDetailDTO } from "./transactionDTO";
+import { deleteTransaction } from "./transactionRepo";
 
 const snap = new Midtrans.Snap({
   isProduction: true,
@@ -50,6 +51,7 @@ export const createMidtransTransaction = async (
     };
   } catch (error: any) {
     console.error("Error creating Midtrans transaction:", error);
+    await deleteTransaction(transaction?.id as string)
     return {
       statusCode: 500,
       code: "INTERNAL_SERVER_ERROR",

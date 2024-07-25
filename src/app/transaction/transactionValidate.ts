@@ -1,7 +1,7 @@
-import { getProductByIdService } from "app/product/productService";
 import { MESSAGE_CODE } from "../../utils/ErrorCode";
 import { AppError } from "../../utils/HttpError";
 import { MESSAGES } from "../../utils/Messages";
+import { REGEX } from "../../utils/Regex";
 import { getProductById } from "../product/productRepo";
 import { TransactionBodyDTO, TransactionDetailDTO } from "./transactionDTO";
 import {
@@ -23,6 +23,11 @@ export const createTransactionValidate = async ({
       MESSAGE_CODE.BAD_REQUEST
     );
   }
+
+  if (!REGEX.email.test(email)) {
+    return AppError(MESSAGES.ERROR.INVALID.USER.EMAIL, 400, MESSAGE_CODE.BAD_REQUEST)
+  }
+
   if (!name) {
     return AppError(
       MESSAGES.ERROR.REQUIRED.NAME,
@@ -38,7 +43,7 @@ export const createTransactionValidate = async ({
     );
   }
 
-  if (((details?.length as number) < 1) || !details ) {
+  if (((details?.length as number) < 1) || !details) {
     return AppError(
       MESSAGES.ERROR.INVALID.PRODUCT_ITEM,
       400,
